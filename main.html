@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- include json file here, !! it is not a real json, but actually a javascript -->
+    <script type="text/javascript" src="data.json"></script>
+</head>
+
+<body>
+    <p>Please input table name</p>
+    <input type="text" id="input_tableName">
+    <button id="btn_ConfirmInput" onclick="confirmInput()">Enter</button>
+    <p id="displayedTableName">
+        Table name:
+    </p>
+    <div id="table"></div>
+    <button onclick="next_table()">Next</button>
+    <button onclick="prev_table()">Previous</button>
+    </br>
+    </br>
+    </br>
+    <a href="" id="a"><button onclick="download(data, 'timestamps.txt', 'text/plain')">Download</button></a>
+</body>
+
+</html>
+
+
+<script>
+    var table_name = "Tablename";
+    // Get the input field
+    var input_tablename = document.getElementById("input_tableName");
+    var btn_confirminput = document.getElementById("btn_ConfirmInput");
+    var label_currenttablename = document.getElementById("displayedTableName");
+
+    // Execute a function when the user releases a key on the keyboard
+    input_tablename.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            btn_confirminput.click();
+        }
+    });
+
+
+    var count = 0;
+    // Example of reading json data, which is included in "head" tag
+    var userdata = JSON.parse(data);
+    var user1_name = userdata[0].name;
+    var user1_age = userdata[0].age;
+    var user2_name = userdata[1].name;
+    var user2_age = userdata[1].age;
+
+    function next_table() {
+        count += 1;
+        label_currenttablename.innerText = "Current Table: " + table_name;
+        alert(user1_name);
+    }
+
+    function prev_table() {
+        count += 1;
+        label_currenttablename.innerText = "Current Table: " + table_name;
+        alert(user1_name);
+    }
+
+
+    function confirmInput() {
+        table_name = input_tablename.value;
+        label_currenttablename.innerText = "Current Table: " + table_name;
+        input_tablename.disabled = true;
+        btn_confirminput.disabled = true;
+    }
+
+    function download(text, name, type) {
+        var a = document.getElementById("a");
+        var file = new Blob([text], {
+            type: type
+        });
+        a.href = URL.createObjectURL(file);
+        a.download = name;
+    }
+</script>
