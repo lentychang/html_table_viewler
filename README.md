@@ -1,6 +1,6 @@
 # Intro
-A WebUI example with simple javascript to view a list of html tables, which are stored in js file.
-###　Note
+A WebUI example with simple javascript to view a list of html tables, which are stored in js file.  
+### Note
 - Data here is stored in json format, but has to be modified and written in javascript. So that it can be included in main.html.
 - Data limitation: Chrome 2GB, Firefox 800 MB
 - `data.json`: normal json data 
